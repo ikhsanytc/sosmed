@@ -6,7 +6,6 @@ import timeAgo from "../service/timeAgo";
 const CardPosts = () => {
   const [posts, setPosts] = useState(null);
   const [widthImg, setWidthImg] = useState("100%");
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchh() {
       const data = await fetchApi();
