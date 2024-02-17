@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { fetchApi } from "../service/fetchApi";
+import timeAgo from "../service/timeAgo";
 
 const CardPosts = () => {
   const [posts, setPosts] = useState(null);
@@ -17,7 +18,6 @@ const CardPosts = () => {
       setWidthImg("50%");
     }
   }, []);
-
   return (
     <center>
       {!posts && (
@@ -88,18 +88,20 @@ const CardPosts = () => {
               className="card mb-5"
               style={{ width: widthImg, textAlign: "left" }}
             >
-              <img
-                src="https://placehold.co/500x500"
-                className="card-img-top"
-                alt="..."
-              />
+              {post.img !== null && (
+                <img
+                  src="https://placehold.co/500x500"
+                  className="card-img-top"
+                  alt="..."
+                />
+              )}
               <div className="card-body">
-                <h5 className="card-title">{post.title}</h5>
+                <h5 className="card-title">{post.name}</h5>
                 <p className="card-text">{post.body}</p>
               </div>
               <div className="card-footer">
                 <small className="text-body-secondary">
-                  Last updated 3 mins ago
+                  {timeAgo(post.time)}
                 </small>
               </div>
             </div>
